@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 /**
  * Representação de um endereço de e-mail.
  */
-
 public final class Email {
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
@@ -23,7 +22,6 @@ public final class Email {
             throw new EmailException("O e-mail não é válido");
         }
 
-
         this.endereco = endereco;
     }
 
@@ -31,6 +29,9 @@ public final class Email {
         return new Email(endereco);
     }
 
+    /**
+     * Obtém o endereço de e-mail.
+     */
     public String getEndereco() {
         return endereco;
     }

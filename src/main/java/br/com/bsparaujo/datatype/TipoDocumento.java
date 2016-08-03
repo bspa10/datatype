@@ -10,14 +10,14 @@ public enum TipoDocumento {
         @Override
         String formatar(Documento documento) {
             try {
-                return formatar(CPF_MASCARA, documento.getDocumento());
+                return formatar(CPF_MASCARA, documento.semFormato());
             } catch (ParseException e) {
                 throw new RuntimeException();
             }
         }
 
         @Override
-        boolean ehvalido(final String documento) {
+        boolean ehValido(final String documento) {
             // considera-se erro CPF's formados por uma sequencia de numeros iguais
             if (documento == null || documento.length() != 11 || documento.matches(CPF_REGEX)) {
                 return false;
@@ -27,7 +27,7 @@ public enum TipoDocumento {
 
             // "try" - protege o codigo para eventuais erros de conversao de tipo (int)
             try {
-                // Calculo do 1o. Digito Verificador
+                // Calculo do 1ro digito Verificador
                 sm = 0;
                 peso = 10;
                 for (i = 0; i < 9; i++) {
@@ -42,7 +42,7 @@ public enum TipoDocumento {
                 r = 11 - (sm % 11);
                 final char dig10 = (r == 10) || (r == 11) ? '0' : (char)(r + 48);
 
-                // Calculo do 2o. Digito Verificador
+                // Calculo do 2do digito Verificador
                 sm = 0;
                 peso = 11;
                 for(i = 0; i < 10; i++) {
@@ -67,14 +67,14 @@ public enum TipoDocumento {
         @Override
         String formatar(Documento documento) {
             try {
-                return formatar(CNPJ_MASCARA, documento.getDocumento());
+                return formatar(CNPJ_MASCARA, documento.semFormato());
             } catch (ParseException e) {
                 throw new RuntimeException();
             }
         }
 
         @Override
-        boolean ehvalido(String documento) {
+        boolean ehValido(String documento) {
             // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
             if (documento == null || documento.length() != 14 || documento.matches(CNPJ_REGEX)) {
                 return false;
@@ -84,7 +84,7 @@ public enum TipoDocumento {
 
             // "try" - protege o código para eventuais erros de conversao de tipo (int)
             try {
-                // Calculo do 1o. Digito Verificador
+                // Calculo do 1ro digito Verificador
                 sm = 0;
                 peso = 2;
                 for (i = 11; i >= 0; i--) {
@@ -102,7 +102,7 @@ public enum TipoDocumento {
                 r = sm % 11;
                 char dig13 = (r == 0) || (r == 1) ? '0' : (char)((11-r) + 48);
 
-                // Calculo do 2o. Digito Verificador
+                // Calculo do 2do digito Verificador
                 sm = 0;
                 peso = 2;
                 for (i = 12; i >= 0; i--) {
@@ -157,7 +157,7 @@ public enum TipoDocumento {
      * @param documento Documento que será verificado
      * @return <code>true</code> se o documento for válido, <code>false</code> caso contrário
      */
-    abstract boolean ehvalido(final String documento);
+    abstract boolean ehValido(final String documento);
 
     /**
      * Obtém o tipo de documento do id passado.

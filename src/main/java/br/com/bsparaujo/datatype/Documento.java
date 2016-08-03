@@ -8,7 +8,7 @@ public final class Documento {
     private final String documento;
 
     private Documento(final TipoDocumento tipoDocumento, final String documento) {
-        if (!tipoDocumento.ehvalido(documento)){
+        if (!tipoDocumento.ehValido(documento)){
             throw new DocumentoException("O documento " + documento + " não é um " + tipoDocumento + " válido.");
         }
 
@@ -27,12 +27,11 @@ public final class Documento {
         return new Documento(tipoDocumento, documento);
     }
 
+    /**
+     * Obtém o tipo do documento.
+     */
     public TipoDocumento getTipoDocumento() {
         return tipoDocumento;
-    }
-
-    public String getDocumento() {
-        return documento;
     }
 
     /**

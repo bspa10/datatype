@@ -27,14 +27,23 @@ public final class Nome {
         return new Nome(primeiro, ultimo);
     }
 
+    /**
+     * Obtém o primeiro nome.
+     */
     public String primeiro() {
         return primeiro;
     }
 
+    /**
+     * Obtém o sobrenome.
+     */
     public String sobrenome() {
         return sobrenome;
     }
 
+    /**
+     * Obtém o nome completo.
+     */
     public String completo() {
         return completo;
     }

@@ -6,7 +6,6 @@ import java.time.Year;
 import java.util.Objects;
 
 public final class Periodo {
-
     private final Year ano;
     private final Month mes;
 
@@ -15,7 +14,7 @@ public final class Periodo {
             throw new PeriodoException("O mês deve ser entre 1 e 12");
         }
 
-        if (ano < 0) {
+        if (ano <= 0) {
             throw new PeriodoException("O ano deve ser maior que zero.");
         }
 
@@ -23,6 +22,12 @@ public final class Periodo {
         this.mes = Month.of(mes);
     }
 
+    /**
+     * Constroi um período com o Ano e Mês informados.
+     * @param ano Ano desejado
+     * @param mes Mês desejado
+     * @return O período construído
+     */
     public static Periodo of(final int ano, final int mes) {
         return new Periodo(ano, mes);
     }
@@ -48,7 +53,7 @@ public final class Periodo {
     }
 
     /**
-     * Obtém o mês do perído em questão
+     * Obtém o mês do período em questão
      */
     public Month mes() {
         return mes;
